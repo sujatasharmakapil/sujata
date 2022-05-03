@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>array</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+<body>
+	<div id="comments"></div>
+	<div id="posts"></div>
+<script>
+	$.ajax({
+		url: "https://my-json-server.typicode.com/typicode/demo/db",
+		success: function (result) {
+
+			 var length = result.posts.length;
+	 		var posts = result.posts;
+	 		
+			 var lengthh = result.comments.length;
+	 		var comments = result.comments;
+	 		 
+	 		
+	 	// 	for(var i=0; i<length; i++){
+	 	// 	  $('#comments').append(result.comments[i].id + ' ' + result.comments[i].body + ' ' + result.comments[i].postId)
+
+			// }
+
+			
+	 		for(var i=0; i<length; i++){
+	 		  $('#posts').append(result.posts[i].id + ':' + result.posts[i].title+ '<br>');
+	 		  	 for(var j=0; j<lengthh; j++){
+	 		  	 	if (result.comments[j].postId == result.posts[i].id) {
+		 		 	 	$('#posts').append(result.comments[j].body+ '<br>'	)
+	 		  	 	}
+		 		  }
+	 		  
+	 		 
+
+			}
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ajax practice</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+<body>
+	<div id="name"></div>
+	<div id="posts"></div>
+	<div id="result"></div>
+
+
+	<script>
+		$.ajax({
+			url: "https://my-json-server.typicode.com/typicode/demo/db",
+			success: function (result) {
+				console.log(result.posts)
+	 		  $('#result').append(result.posts);
+
+				// console.log(result.profile.name);
+	 		  $('#name').append(result.profile.name);
+				console.log(result.posts[0].title + ' ' + result.posts[0].id);
+				console.log(result.posts.length)
+	 		       var length = result.posts.length;
+	 		       $('#posts').append(result.posts.length)
+	 		         for(var i=0; i<length; i++){
+                       $('#posts').append(result.posts[i].title + ' ' + result.posts[i].id)
+	 		           console.log(i)
+	 		           console.log(result.posts)
+	 		  $('#result').append(result.posts);
+		
+	 }
+
+
+
+			}
+		})
+
+		
+	</script>
+
+</body>
+</html>

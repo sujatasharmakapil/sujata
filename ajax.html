@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+
+	<div id="id"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+	$.ajax({
+		url: "https://my-json-server.typicode.com/typicode/demo/posts",
+	        success: function(result){
+	 		console.log(result)
+	 		// $.each(result, function(index, itemData) { 
+	 		//  $('#id').append(result[index].title + ' ' + result[index].id)
+              
+	 		 
+	 		// });
+	 		var length = result.length;
+	 		$('#id').append(result.length)//array length
+	 		for(var i=0; i<length; i++){
+	 		  $('#id').append(result[i].title + ' ' + result[i].id)
+	 		  console.log(i)
+		
+	 }
+	 }
+	 
+});
+
+
+</script>
+</body>
+</html>	
