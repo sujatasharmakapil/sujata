@@ -15,6 +15,7 @@
 	$.ajax({
 		url: "https://api.coingecko.com/api/v3/coins",
 		success: function (result) {
+			console.log(result);
 			
 			// console.log(result[0].market_data.price_change_24h);
 			var table = "<table class='table table-striped'><th>ID</th><th>Name</th><th>Time</th>";
