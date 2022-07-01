@@ -1,8 +1,7 @@
 <html>
 <head>
-	<!-- <span>🌞</span> -->
-<title>Validation through js🌞</title>
-  		<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<title>Validation through js</title>
+  	<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
       <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
@@ -24,16 +23,17 @@
 			<input type="submit" name="btn" value="click9" id="demo">
 		</form>
 	</div>	
-				<?php
+			<?php
+				if(isset($_POST['btn'])){
+					$id = $_POST['id'];
+					$name = $_POST['name'];
+					$email = $_POST['email'];
+					$tel = $_POST['tel'];
+					$gender = $_POST['gender'];
+				$conn = mysqli_connect("localhost","root","","test")or die("error in connection".mysql_connect_error());
 
-					if(isset($_POST['btn'])){
-						$id = $_POST['id'];
-						$name = $_POST['name'];
-						$email = $_POST['email'];
-						$tel = $_POST['tel'];
-						$gender = $_POST['gender'];
-					$conn = mysqli_connect("localhost","root","","test")or die("error in connection".mysql_connect_error());
-					$q = "insert into validation(name,email,tel,gender) values ('$name','$email','$tel','$gender')";
+				$q = "UPDATE validation SET name=$name, email=$email, tel=$tel, gender=$gender WHERE id=$id ";
+
 					mysqli_query($conn,$q)or die("error in connection".mysql_error());
 
 					$count=mysqli_affected_rows($conn);
@@ -58,7 +58,6 @@
 			if (mysqli_num_rows($result) > 0) {
 			  // output data of each rows
 			  while($row = mysqli_fetch_assoc($result)) {
-			  	if($row){
 			    echo "
 			    <table>
 			    	<tr>
@@ -73,13 +72,11 @@
 			    		<th>".$row['name']."</th>
 			    		<th>".$row['email']."</th>
 			    		<th>".$row['tel']."</th>
-			    		<th><button id='myButton' class='btn btn-primary'> <a href='update.php?id=".$row['id']."'>UPDATE </button>
-
+			    		<th><button id='myButton' class='btn btn-primary'> <a href='update.php&id=".$row['id']."'>UPDATE </button>
 			    		</th>
 			    	</tr>
 			    </table>
 			   ";
-			  }
 			  }
 			} else {
 			  echo "0 results";
@@ -87,44 +84,3 @@
 
 			mysqli_close($conn);
 			?>
-			<script>
-				$(document).ready(function(){
-					$("#form").validate({
-						rules : {
-						name : "required",
-						email : "required",
-						gender : "required",
-						tel : {
-							required : true,
-							minlength : 5
-						},
-						email : {
-							required : true
-						}
-					},
-					});
-				});
-			</script>
-
-			<script>
-				    function ValidateEmail(email) {
-				        var expr = [a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$;
-				        return expr.test(email);
-				    };
-				    $("#demo").on("click", function () {
-				        if (!ValidateEmail($("#txtEmail").val())) {
-				            alert("Invalid email address.");
-				        }
-				        else {
-				            alert("Valid email address.");
-				        }
-				    });
-			</script>
-			<script>
-				$( "#demo" ).click(function() {
-  $("#demo").attr('value', 'Save');
-
-});
-			</script>
-</body>
-</html>
