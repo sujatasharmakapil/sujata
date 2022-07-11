@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Local Storage</title>
+	 <link rel="stylesheet" href="style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  
+<div class="widget-wrap">
+  <h1>EDITABLE TABLE</h1>
+  <table id="demo" class="editable">
+    <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </thead>
+    <tbody id="tbldata">
+        
+    </tbody>
+  </table>
+ <button type="button" class="btn btn-dark" class="add-item" onclick="show()">Add +</button>
+</div>
+
+<div class="widget-wrap9" class="form"  id="input-form" style="display: none;">
+	<h2 class="form__title">Contact Us</h2>
+	<input type="text" name="name" id="name" class="input">
+	<input type="text" name="email" id="email" class="input"> 
+	<button class="btn" onclick="store()">Submit</button>
+	</div>
+	<script>
+			window.onload = function() { 
+				getData(); 
+			};
+
+			function show(){
+					document.getElementById("input-form").style.display='block';
+			}
+			function store(){
+				let name_field =document.getElementById("name");
+				let email_field =document.getElementById("email");
+				let name_value = name_field.value;
+				let email_value = email_field.value;
+				console.log(name_value)
+				if(localStorage.getItem('user-data') != null){
+					let Data = localStorage.getItem('user-data');
+					let DecData = JSON.parse(Data);
+
+					console.log(DecData)
+					let NewData = {};
+					NewData.name=name_value;
+					NewData.email = email_value;
+
+					DecData.push(NewData);
+					localStorage.setItem('user-data',JSON.stringify(DecData));
+				}else{
+					let Data = {};
+					let DataArr = [];
+					Data.name=name_value;
+					Data.email = email_value;
+					DataArr.push(Data);
+					console.log(DataArr)
+					localStorage.setItem('user-data',JSON.stringify(DataArr));
+				}
+				document.getElementById("input-form").style.display='none';
+				getData();
+
+			}
+			function getData(){
+				if(localStorage.getItem('user-data') != null){
+					let Data = localStorage.getItem('user-data');
+					let DecData = JSON.parse(Data);
+					let html='';
+					for(var i=0;i<DecData.length;i++){
+						html +='<tr><td>'+DecData[i].name+'</td><td>'+
+								DecData[i].email+'</td><td onclick="delBtn('+i+')" >Del</td><td class="edit-btn" onclick="editBtn('+i+')" >Edit</td></tr>';
+					}
+					let tbody = document.getElementById("tbldata");
+					tbody.innerHTML = html;
+				}
+			}
+
+			function delBtn(id) {
+					let colId = (id);
+
+					if(localStorage.getItem('user-data') != null){
+						let Data = localStorage.getItem('user-data');
+						let DecData = JSON.parse(Data);
+						
+						if(DecData[colId]){
+							DecData.splice(id,1);
+							localStorage.setItem('user-data',JSON.stringify(DecData));
+						}else{
+							alert('wrong id')
+						}
+
+					}
+					getData();
+			}
+			function editBtn(id){
+					let colId = (id);
+					// console.log(id);
+				location.href = "update.html?id="+id;
+			}
+
+		</script>
+</body>
+</html>

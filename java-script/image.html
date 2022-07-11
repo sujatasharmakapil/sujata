@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <title></title>
+        <style>
+
+.container__img-holder {
+  max-width: 280px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Popup Styling */
+.img-popup {
+ 
+  display: none;
+}
+
+.img-popup img {
+  max-width: 400px;
+  width: 100%;
+}
+
+.opened {
+  display: flex;
+}
+
+        </style>
+    </head>
+<body>
+<div class="container">
+  <div class="container__img-holder">
+    <img src="images/1.webp" alt="Image">
+  </div>
+  <div class="container__img-holder">
+    <img src="images/2.webp" alt="Image">
+  </div>
+  <div class="container__img-holder">
+    <img src="images/3.webp" alt="Image">
+  </div>
+  <div class="container__img-holder">
+    <img src="images/4.webp" alt="Image">
+  </div>
+</div>
+
+<div class="img-popup">
+  <img src="" alt="Popup Image">
+  <div class="close-btn">
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+
+// required elements
+var imgPopup = $('.img-popup');
+var imgCont  = $('.container__img-holder');
+var popupImage = $('.img-popup img');
+var closeBtn = $('.close-btn');
+
+// handle events
+imgCont.on('click', function() {
+  var img_src = $(this).children('img').attr('src');
+  imgPopup.children('img').attr('src', img_src);
+  imgPopup.addClass('opened');
+});
+
+$(imgPopup, closeBtn).on('click', function() {
+  imgPopup.removeClass('opened');
+  imgPopup.children('img').attr('src', '');
+});
+
+popupImage.on('click', function(e) {
+  e.stopPropagation();
+});
+
+});
+    </script>
+
+</body>
+</html>

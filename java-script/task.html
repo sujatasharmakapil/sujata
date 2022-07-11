@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body onload="get()">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">First-Name</th>
+      <th scope="col">Last-Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="demo" style="padding-bottom: 2%;"></td>
+      <td id="demo1"></td>
+    </tr>
+  </tbody>
+</table>
+   <button type="button" class="btn btn-primary"  onclick="myFunction()">ADD +</button><br/><br/><br/>
+
+<form name="form9" method="post" id="show" style="display: none;">
+  <div class="mb-3">
+    <input name="first_name" type="text" id="first_name" required="" placeholder="First-Name" /><br/><br/>
+    <input name="last_name" type="text" id="last_name" required="" placeholder="Last-Name" /><br/><br/>
+  </div>
+  <button onclick="store()" type="button" class="btn btn-primary">StoreData</button>
+</form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+<script>
+
+ function store(){
+     var inputFirst_Name= document.getElementById("first_name");
+   localStorage.setItem("first_name", inputFirst_Name.value);
+ var inputLast_Name= document.getElementById("last_name");
+       localStorage.setItem("last_name", inputLast_Name.value);
+
+    }
+
+    function get(){
+        document.getElementById("demo").innerHTML = localStorage.getItem("first_name");
+
+       document.getElementById("demo1").innerHTML = localStorage.getItem("last_name");
+    }
+
+  function myFunction() {
+  var x = document.getElementById("show");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>

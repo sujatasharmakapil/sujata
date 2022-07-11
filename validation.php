@@ -104,9 +104,7 @@
 					},
 					});
 				});
-			</script>
-
-			<script>
+			
 				    function ValidateEmail(email) {
 				        var expr = [a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2, 4}$;
 				        return expr.test(email);
@@ -119,8 +117,7 @@
 				            alert("Valid email address.");
 				        }
 				    });
-			</script>
-			<script>
+			
 				$( "#demo" ).click(function() {
   $("#demo").attr('value', 'Save');
 

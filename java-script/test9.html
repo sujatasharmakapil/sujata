@@ -1,0 +1,17 @@
+<form action="task.php" class="form-login"  method="post" /> 
+<input name="email" type="email" id="email" required="" placeholder="Email" />
+<input name="password" type="password" required="" placeholder="Contraseña" />
+</form>
+
+<button onclick="store()" type="button">StoreEmail</button>
+
+<script  type="text/javascript">
+  var email = $('#email').val();
+var ss = localStorage.setItem("email", email);
+console.log(ss);
+</script>
+
+<script>
+var a = 2;
+console.log(a);
+</script>

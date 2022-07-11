@@ -1,0 +1,52 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.container{
+	position: relative;
+	min-height: 100vh;
+	background: #ddd;
+}
+.container h1{
+	font-size: 40px;
+	font-family: cursive;
+	text-align: center;
+}
+.container .image-container{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	padding: 10px;
+	justify-content: center;
+}
+.container .image-container .image{
+	border: 10px solid #fff;
+	overflow: hidden;
+	cursor: pointer;
+}
+.container .image-container .image img{
+	height: 100%;
+	width: 100%;
+	object-fit: container;
+	transition: .2s linear;
+}
+.container .image-container .image:hover img{
+	transition: scale(1.1);
+}
+.container .popup-image{
+	position: fixed;
+	top: 0; left: 0;
+	background: rgba(0, 0, 0, 9);
+	height: 100%;
+	width: 100%;
+	z-index: 100;
+}
+.container .popup-image span{
+	position: absolute;
+	top: 0; right: 10px;
+	font-size: 40px;
+	font-weight: bolder;
+	cursor: #fff;
+	z-index: 100;
+	display: none;
+}

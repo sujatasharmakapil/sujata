@@ -6,9 +6,9 @@
 	<title>report</title>
 	<style>
 		table {
-  text-align: center;
-  border: solid;
-}
+				  text-align: center;
+				  border: solid;
+			}
 
 thead {
   background-color: green;
@@ -83,7 +83,7 @@ th {
 					
 
 					// show data
-					$conn = mysqli_connect("localhost","root","","test")or die("error in connection".mysql_connect_error());
+			$conn = mysqli_connect("localhost","root","","test")or die("error in connection".mysql_connect_error());
 
 			$sql = "SELECT * FROM report";
 			$result = mysqli_query($conn,$sql);
